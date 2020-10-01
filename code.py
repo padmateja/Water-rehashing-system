@@ -2,13 +2,17 @@ import pandas as pd
 from sklearn import model_selection
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.metrics import r2_score
 df = pd.read_csv('F:\Hack SRM\idata.csv')
 x=df['quantity']
 y1=df['zn']
 df = pd.DataFrame(x)
 #df.columns = df.feature_names
-train_x, test_x, train_y1, test_y1 = model_selection.train_test_split(x, y1)
+#analyzing the data with some visualization using seaborn library.
+sns.Countplot(x = "zn" ,df) #gives the histogram with the values can do similar to others by just changing the label
+df.info()#give you the full detailed info about the data that you are going to use.
+train_x, test_x, train_y1, test_y1 = model_selection.train_test_split(x, y1, testsize = 0.3, random_state = 1) # we are splitting the data training(70%) and test into 30 for precise result
 train_x = train_x.reshape(-1,1)
 test_x = test_x.reshape(-1,1)
 alg = LinearRegression()
